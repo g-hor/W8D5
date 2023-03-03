@@ -1,18 +1,16 @@
-Function.prototype.myBind = function(ctx,arg1,arg2){
-    // return ()=>(this.call(ctx,arg1,arg2))
-    debugger;
-    let that = this
-    let args = Array.from(arguments);
-    let others = args.slice(1);
-    return function(ctx, others){
+Function.prototype.myBind = function (ctx) {
+  // return ()=>(this.call(ctx,arg1,arg2))
+  // debugger;
+  let that = this;
+  let args = Array.from(arguments);
+  let others = args.slice(1);
 
-      that.apply(ctx, others)
-      // return function() {
-
-      // }
-    }
-}
-
+  const dontKnowHowName =  function () {
+    let args2 = Array.from(arguments).slice(1)
+    that.apply(ctx, others);
+  return dontKnowHowName(args2)
+  };
+};
 
 class Cat {
   constructor(name) {
@@ -39,13 +37,13 @@ const pavlov = new Dog("Pavlov");
 // // true
 
 // bind time args are "meow" and "Kush", no call time args
-markov.says.myBind(pavlov, "meow", "Kush")();
+let bsays = markov.says.myBind(pavlov, "meow", "Kush");
 // Pavlov says meow to Kush!
 // true
-
-
+bsays()
 // no bind time args (other than context), call time args are "meow" and "a tree"
 markov.says.myBind(pavlov)("meow", "a tree");
+//bsays(args)
 // Pavlov says meow to a tree!
 // true
 
