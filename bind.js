@@ -1,10 +1,16 @@
 Function.prototype.myBind = function(ctx,arg1,arg2){
     // return ()=>(this.call(ctx,arg1,arg2))
+    debugger;
     let that = this
-    return function(){
-        that.call(ctx,arg1,arg2)
-    }
+    let args = Array.from(arguments);
+    let others = args.slice(1);
+    return function(ctx, others){
 
+      that.apply(ctx, others)
+      // return function() {
+
+      // }
+    }
 }
 
 
